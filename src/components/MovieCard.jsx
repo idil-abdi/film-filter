@@ -1,21 +1,18 @@
-// import { useState } from "react";
-// import { useEffect, useState } from "react";
-// import ImgFilter from "../img/imgFilter.png"
 
-function MovieCard({movies, genres}) {
+function MovieCard({movies, genres, onMovieClick}) {
     const setNumOfMovie = movies.slice(0, 15)
+    
+    const imageUrl = import.meta.env.VITE_TMDB_IMAGE_URL;
 
     const genreMap = genres.reduce((acc, genre) => {
         acc[genre.id] = genre.name;
         return acc;
     }, {});
 
-    const imageUrl = import.meta.env.VITE_TMDB_IMAGE_URL;
-
     return (
         <>
         {setNumOfMovie.map((eachMovie, index) => 
-            <div key={index} className="group relative overflow-hidden rounded-2xl bg-zinc-900 transition-all duration-300 hover:scale-110 hover:border-2 hover:border-purple-600">
+            <div key={index} onClick={() => onMovieClick(eachMovie.id)} className="group relative overflow-hidden rounded-2xl bg-zinc-900 transition-all duration-300 hover:scale-110 hover:border-2 hover:border-purple-600">
                 
                 <img src={setNumOfMovie[index].backdrop_path ? `${imageUrl}${setNumOfMovie[index].backdrop_path}` : "/fallback.jpg"} alt={eachMovie.title} className="w-full h-120 object-cover transition-transform duration-500 group-hover:scale-110"/>
                 

@@ -24,3 +24,15 @@ export const getMovieGenre = async () => {
   }
 };
 
+export const getMovieDetails = async (id) => {
+  try {
+    const response = await api.get(`/movie/${id}`);
+    return response.data;
+    
+    
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    throw error;
+  }
+};
+

@@ -2,15 +2,35 @@ import { useEffect, useState } from 'react';
 import Filter from './components/Filter'
 import Hero from './components/Hero'
 import NavigationBar from './components/NavigationBar'
-import { getMovieGenre, getTrendingMovies } from './services/movieService';
+import { getMovieDetails, getMovieGenre, getTrendingMovies } from './services/movieService';
 import MovieGrid from './components/MovieGrid';
+import MovieModal from './components/MovieModal';
 
 function App() {
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loadingMovie, setLoadingMovie] = useState(false);
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [movieGenre, setMovieGenre] = useState([]);
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  
+  const handleMovieClick = async (movieId) => {
+    try {
+      setLoadingMovie(true);
+      setIsModalOpen(true); // open early for UX
 
+      console.log("MODAL STATE:", isModalOpen);
+
+      const movie = await getMovieDetails(movieId);
+      setSelectedMovie(movie);
+
+    } catch (error) {
+      console.error("Failed to load movie details", error);
+    } finally {
+      setLoadingMovie(false);
+    }
+  };
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -37,7 +57,13 @@ function App() {
       <NavigationBar/>
       <Hero movies={trendingMovies}/>
       <Filter/>
-      <MovieGrid movies={trendingMovies} genres={movieGenre} />
+      <MovieGrid onMovieClick={handleMovieClick} movies={trendingMovies} genres={movieGenre} />
+      <MovieModal
+  movie={selectedMovie}
+  isOpen={isModalOpen}
+  loading={loadingMovie}
+  onClose={() => setIsModalOpen(false)}
+/>
     </div>
   )
 }
