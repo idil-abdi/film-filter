@@ -1,4 +1,4 @@
-import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react"
+import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react"
 import logo from '../img/video.png'
 function NavigationBar() {
   return (
@@ -9,10 +9,11 @@ function NavigationBar() {
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Film Filter</span>
     </NavbarBrand>
     <NavbarToggle className=" hover:text-[#a855f7]" />
-      <NavbarCollapse>
+      <NavbarCollapse className="flex justify-items-center">
         <NavbarLink className="text-white hover:text-[#a855f7] border-0 text-center" href="#">Home</NavbarLink>
         <NavbarLink className="text-white hover:text-[#a855f7] border-0 text-center" href="#">Movies</NavbarLink>
         <NavbarLink className="text-white hover:text-[#a855f7] border-0 text-center" href="#">TV Shows</NavbarLink>
+        <Button className=" bg-[#a855f7] text-white">Generate</Button>
       </NavbarCollapse>
     </Navbar>
     </>

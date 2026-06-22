@@ -5,6 +5,7 @@ import NavigationBar from './components/NavigationBar'
 import { getMovieDetails, getMovieGenre, getTrendingMovies } from './services/movieService';
 import MovieGrid from './components/MovieGrid';
 import MovieModal from './components/MovieModal';
+import FooterContainer from './components/FooterContainer';
 
 function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -19,8 +20,6 @@ function App() {
     try {
       setLoadingMovie(true);
       setIsModalOpen(true); // open early for UX
-
-      console.log("MODAL STATE:", isModalOpen);
 
       const movie = await getMovieDetails(movieId);
       setSelectedMovie(movie);
@@ -55,15 +54,11 @@ function App() {
   return (
     <div className='bg-[#0b0e27] text-white '>
       <NavigationBar/>
-      <Hero movies={trendingMovies}/>
+      <Hero movies={trendingMovies} onMovieClick={handleMovieClick}/>
       <Filter/>
       <MovieGrid onMovieClick={handleMovieClick} movies={trendingMovies} genres={movieGenre} />
-      <MovieModal
-  movie={selectedMovie}
-  isOpen={isModalOpen}
-  loading={loadingMovie}
-  onClose={() => setIsModalOpen(false)}
-/>
+      <MovieModal movie={selectedMovie} isOpen={isModalOpen} loading={loadingMovie} onClose={() => setIsModalOpen(false)}/>
+      <FooterContainer/>
     </div>
   )
 }

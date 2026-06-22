@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-function Hero({movies}) {
+function Hero({movies, onMovieClick}) {
   const setNumOfMovie = movies.slice(0,5)
   
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,7 +42,7 @@ function Hero({movies}) {
         <div className="absolute bottom-20 left-10 max-w-xl text-white">
           <h1 className="text-4xl font-bold mb-4">{currentMovie.title}</h1>
           <p className="mb-4">{currentMovie.overview.split(' ').slice(0, 20).join(" ") + "..." || "No description available."}</p>
-          <button className="bg-[#a855f7] px-6 py-2 rounded hover:bg-red-700">
+          <button onClick={() => onMovieClick(currentMovie.id)} className="bg-[#a855f7] px-6 py-2 rounded hover:bg-red-700">
             View Details
           </button>
         </div>
