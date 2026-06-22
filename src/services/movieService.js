@@ -36,3 +36,17 @@ export const getMovieDetails = async (id) => {
   }
 };
 
+
+export const getMovieQuery = async (query) => {
+  try {
+    const response = await api.get(`search/movie?query=${query}`);
+    
+    return response.data.results;
+    
+    
+  } catch (error) {
+    console.error("Error fetching movie query:", error);
+    throw error;
+  }
+};
+

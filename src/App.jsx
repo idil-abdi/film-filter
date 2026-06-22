@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Filter from './components/Filter'
 import Hero from './components/Hero'
 import NavigationBar from './components/NavigationBar'
-import { getMovieDetails, getMovieGenre, getTrendingMovies } from './services/movieService';
+import { getMovieDetails, getMovieGenre, getMovieQuery, getTrendingMovies } from './services/movieService';
 import MovieGrid from './components/MovieGrid';
 import MovieModal from './components/MovieModal';
 import FooterContainer from './components/FooterContainer';
@@ -15,7 +15,12 @@ function App() {
   const [movieGenre, setMovieGenre] = useState([]);
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  
+ 
+  const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [query, setQuery] = useState("")
+
+ 
   const handleMovieClick = async (movieId) => {
     try {
       setLoadingMovie(true);
@@ -34,10 +39,18 @@ function App() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const movies = await getTrendingMovies()
         const genres = await getMovieGenre()
         setMovieGenre(genres)
-        setTrendingMovies(movies)
+        
+        if (query) {
+          const searchedMovies   = await getMovieQuery(query)
+          
+          setMovies(searchedMovies)
+        } else {
+          const trending = await getTrendingMovies()
+          setTrendingMovies(trending)
+
+        }
         
       } catch (error) {
         setError("Failed to load movies", error)
@@ -46,7 +59,7 @@ function App() {
       }
     }
     fetchMovies()
-  }, [])
+  }, [query])
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error}</p>
@@ -55,9 +68,9 @@ function App() {
     <div className='bg-[#0b0e27] text-white '>
       <NavigationBar/>
       <Hero movies={trendingMovies} onMovieClick={handleMovieClick}/>
-      <Filter/>
-      <MovieGrid onMovieClick={handleMovieClick} movies={trendingMovies} genres={movieGenre} />
-      <MovieModal movie={selectedMovie} isOpen={isModalOpen} loading={loadingMovie} onClose={() => setIsModalOpen(false)}/>
+      <Filter searchTerm={searchTerm} setSearchTerm={setSearchTerm} setQuery={setQuery}  />
+      <MovieGrid movies={query ? movies : trendingMovies} onMovieClick={handleMovieClick} genres={movieGenre} />
+      <MovieModal  movie={selectedMovie} isOpen={isModalOpen} loading={loadingMovie} onClose={() => setIsModalOpen(false)}/>
       <FooterContainer/>
     </div>
   )
