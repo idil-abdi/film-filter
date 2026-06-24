@@ -1,16 +1,63 @@
-# React + Vite
+# 🎬 Film Filter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Film Filter is a modern movie discovery application that allows users to browse the latest movies and search for their favourite films.
 
-Currently, two official plugins are available:
+Built with **React**, **Vite**, **JavaScript**, **Tailwind CSS**, and **Flowbite React**, this project showcases my ability to create a fully functional and responsive front-end application using modern web development technologies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Demo
 
-## React Compiler
+Add your live project link here:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```text
+https://idil-abdi.github.io/film-filter/
+```
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Browse the latest movies
+- Search for movies by title
+- Responsive design for desktop, tablet, and mobile devices
+- Fast and smooth user experience
+- Clean and modern UI using Flowbite React and Tailwind CSS
+
+---
+
+## 🛠️ Built With
+
+- React
+- Vite
+- JavaScript (ES6+)
+- Tailwind CSS
+- Flowbite React
+- Movie API
+
+---
+
+## 📚 What I Learned
+
+This project helped me strengthen my skills in:
+
+- React component development
+- State management with React Hooks
+- API integration and asynchronous data fetching
+- Responsive web design
+- Creating reusable UI components
+- Styling applications with Tailwind CSS
+- Using third-party component libraries such as Flowbite React
+
+---
+
+## 🎯 Future Improvements
+
+- Adding favourites/watchlist page
+- where users can save, add, detlete movies to there favourites/watchlist
+- Dark mode
+- Movie trailers
+
+---
+
+## 👨‍💻 Author
+
+Developed by Edil Abdiaziz.
+
+This project demonstrates my ability to build a fully functional front-end application using React, Vite, JavaScript, Tailwind CSS, and Flowbite React while following modern web development practices.
