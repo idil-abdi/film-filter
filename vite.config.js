@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/',
+  base: '/film-filter/',
   plugins: [react(), tailwindcss(), flowbiteReact()],
 })
